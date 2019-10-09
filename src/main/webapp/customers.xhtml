@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+@Assessment3: WebProject The Budget Cars
+@author Jose Luis & Sarita Giri
+@StudentNumbers: 12045670 & 12045743
+@Description:  Customers JSF page that prove a list with all the customers in the system
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Budget Cars - Customers</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <!-- Navbar on the top of the page -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="index.xhtml">Budget Cars</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="index" value="Home"></h:link>
+                        </li>
+                        <li class="nav-item active">
+                            <h:link class="nav-link" outcome="customers" value="Customer"><span class="sr-only">(current)</span></h:link>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Cars
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <h:link class="dropdown-item" outcome="cars" value="All Cars" />
+                                <div class="dropdown-divider"></div>
+                                <h:link class="dropdown-item" outcome="familyCars" value="Family Cars" />
+                                <h:link class="dropdown-item" outcome="sportsCars" value="Sports Cars" />
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="sales" value="Sales"/>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <br />
+            <br />
+            <div class="body">
+                <h1>Customers Budget Cars</h1>
+                <br />
+                <br />
+                <div class="table-responsive-xl">
+                    <h:dataTable value="#{budgetCarsController.customerList}" var="customer" class="table table-striped">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#" />
+                            </f:facet>
+                            <h:outputText value="#{customer.id}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="First Name" />
+                            </f:facet>
+                            <h:outputText value="#{customer.firstName}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Last Name"/>
+                            </f:facet>
+                            <h:outputText value="#{customer.lastName}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Mobile Number" />
+                            </f:facet>
+                            <h:outputText value="#{customer.mobilePhoneNumber}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Email Address" />
+                            </f:facet>
+                            <h:outputText value="#{customer.emailAddress}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Address" />
+                            </f:facet>
+                            <h:outputText value="#{customer.streetAddress}, #{customer.suburb} #{customer.stateName} #{customer.postcode}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value=""/>
+                            </f:facet>
+                            <h:form>
+                                <h:commandButton class="btn btn-danger" value="Delete" action="#{budgetCarsController.goDeleteCustomer(customer)}"/>
+                            </h:form>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+                <br />
+                <h:button class="btn btn-primary" outcome="createCustomer" value="Add New Customer"></h:button>
+                <br />
+                <br />
+            </div>
+        </div>
+    </h:body>
+</html>
+

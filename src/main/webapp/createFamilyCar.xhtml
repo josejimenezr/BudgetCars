@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+@Assessment3: WebProject The Budget Cars
+@author Jose Luis & Sarita Giri
+@StudentNumbers: 12045670 & 12045743
+@Description:  Create Family Car JSF page that allows to create a new family car
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <title>Budget Cars - Family Cars - Create Family Car</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <!-- Navbar on the top of the page -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="index.xhtml">Budget Cars</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="index" value="Home"></h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="customers" value="Customer"></h:link>
+                        </li>
+                        <li class="nav-item active dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Cars <span class="sr-only">(current)</span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <h:link class="dropdown-item" outcome="cars" value="All Cars" />
+                                <div class="dropdown-divider"></div>
+                                <h:link class="dropdown-item" outcome="familyCars" value="Family Cars" />
+                                <h:link class="dropdown-item" outcome="sportsCars" value="Sports Cars" />
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="sales" value="Sales"/>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <div class="body">
+                <br />
+                <br />
+                <h1>Create Family Car</h1>
+                <br />
+                <br />
+                <h:form>
+                    <h:messages style="color:red"/>
+                    <div class="form-group row">
+                        <h:outputLabel value="Maker:" for="makerCol" class="col-sm-3 col-form-label"/>
+                        <div class="col-sm-9">
+                            <h:message for="makerCol"  style="color:red"/>
+                            <h:inputText class="form-control" id="makerCol" a:placeholder="Maker" value="#{budgetCarsController.familyCar.make}" required="true" requiredMessage="Please enter car maker">
+                                <f:validateRegex pattern="[A-Za-z\s]+" />
+                            </h:inputText>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h:outputLabel value="Model:" for="modelCol" class="col-sm-3 col-form-label"/>
+                        <div class="col-sm-9">
+                            <h:message for="modelCol"  style="color:red"/>
+                            <h:inputText class="form-control" id="modelCol" a:placeholder="Model" value="#{budgetCarsController.familyCar.model}" required="true" requiredMessage="Please enter car model">
+                                <f:validateRegex pattern="[a-zA-Z0-9]+" />
+                            </h:inputText>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h:outputLabel value="Year of Manufacture" for="yearOfManufactureCol" class="col-sm-3 col-form-label" />
+                        <div class="col-sm-9">
+                            <h:message for="yearOfManufactureCol"  style="color:red"/>
+                            <h:inputText class="form-control" id="yearOfManufactureCol" a:placeholder="Year of Manufacture" converter="javax.faces.Integer" value="#{budgetCarsController.familyCar.yearOfManufacture}" required="true" requiredMessage="Please enter car year of manufacture" validatorMessage="Please enter car year of 4 digits" converterMessage="Please enter a number">
+                                <f:validateLength maximum="4" minimum="4"/>
+                                <f:validateLongRange minimum="0" />
+                            </h:inputText>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h:outputLabel value="Colour:" for="colourCol" class="col-sm-3 col-form-label" />
+                        <div class="col-sm-9">
+                            <h:message for="colourCol"  style="color:red"/>
+                            <h:inputText class="form-control" id="colourCol" a:placeholder="Colour" value="#{budgetCarsController.familyCar.colour}" required="true" requiredMessage="Please enter car colour">
+                                <f:validateRegex pattern="[A-Za-z\s]+" />
+                            </h:inputText>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h:outputLabel value="Transmission:" for="transmissionCol" class="col-sm-3 col-form-label" />
+                        <div class="col-sm-9">
+                            <h:message for="transmissionCol"  style="color:red"/>
+                            <h:selectOneRadio id="transmissionCol" value = "#{budgetCarsController.familyCar.transmission}" required="true" requiredMessage="Please enter car transmission">
+                                <f:selectItem itemValue = "Automatic" itemLabel = "&nbsp;Automatic &nbsp;" />
+                                <f:selectItem itemValue = "Manual" itemLabel = "&nbsp;Manual" />
+                            </h:selectOneRadio>  
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h:outputLabel value="Number of Seats:" for="numberOfSeatsCol" class="col-sm-3 col-form-label" />
+                        <div class="col-sm-9">
+                            <h:message for="numberOfSeatsCol"  style="color:red"/>
+                            <h:selectOneMenu class="form-control" id="numberOfSeatsCol" converter="javax.faces.Integer" value="#{budgetCarsController.familyCar.numberOfSeats}" required="true" requiredMessage="Please enter car number of seats">
+                                <f:selectItem itemLabel="Select number of seats" noSelectionOption="true" />
+                                <f:selectItem itemValue="2" itemLabel="2"/>
+                                <f:selectItem itemValue="3" itemLabel="3"/>
+                                <f:selectItem itemValue="4" itemLabel="4"/>
+                                <f:selectItem itemValue="5" itemLabel="5"/>
+                                <f:selectItem itemValue="6" itemLabel="6"/>
+                                <f:selectItem itemValue="7" itemLabel="7"/>
+                                <f:selectItem itemValue="8" itemLabel="8"/>
+                                <f:selectItem itemValue="9" itemLabel="9"/>
+                                <f:selectItem itemValue="10" itemLabel="10"/>
+                                <f:selectItem itemValue="11" itemLabel="11"/>
+                                <f:selectItem itemValue="12" itemLabel="12"/>
+                                <f:selectItem itemValue="13" itemLabel="13"/>
+                                <f:selectItem itemValue="14" itemLabel="14"/>
+                                <f:selectItem itemValue="15" itemLabel="15"/>
+                                <f:selectItem itemValue="16" itemLabel="16"/>
+                                <f:selectItem itemValue="17" itemLabel="17"/>
+                                <f:selectItem itemValue="18" itemLabel="18"/>
+                                <f:selectItem itemValue="19" itemLabel="19"/>
+                                <f:selectItem itemValue="20" itemLabel="20"/>
+                            </h:selectOneMenu>         
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h:outputLabel value="Registration Number:" for="registrationNumberCol" class="col-sm-3 col-form-label" />
+                        <div class="col-sm-9">
+                            <h:message for="registrationNumberCol"  style="color:red"/>
+                            <h:inputText class="form-control" id="registrationNumberCol" a:placeholder="Registration Number" value="#{budgetCarsController.familyCar.registrationNumber}" required="true" requiredMessage="Please enter car registration number">
+                                <f:validateRegex pattern="[a-zA-Z0-9]+" />
+                            </h:inputText>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h:outputLabel value="Price ($):" for="priceCol" class="col-sm-3 col-form-label" />
+                        <div class="col-sm-9">
+                            <h:message for="priceCol"  style="color:red"/>
+                            <h:inputText class="form-control" id="priceCol" a:placeholder="Price" converter="javax.faces.Float" value="#{budgetCarsController.familyCar.price}" required="true" requiredMessage="Please enter car price" converterMessage="Please enter a number on price" validatorMessage="Please enter car price greater than zero">
+                                <f:validateDoubleRange minimum="0.00" />
+                            </h:inputText>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h:outputLabel value="Child Safety Locks?" for="safetyLocksCol" class="col-sm-3 col-form-label" />
+                        <div class="col-sm-9">
+                            <h:message for="safetyLocksCol"  style="color:red"/>
+                            <h:selectOneRadio id="safetyLocksCol" value = "#{budgetCarsController.familyCar.hasChildSafetyLocks}" converter="javax.faces.Boolean" required="true" requiredMessage="Please enter if car has child safety locks">
+                                <f:selectItem itemValue = "true" itemLabel = "&nbsp;Yes &nbsp;" />
+                                <f:selectItem itemValue = "false" itemLabel = "&nbsp;No" />
+                            </h:selectOneRadio>  
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h:outputLabel value="Volume Boot (L):" for="volumeBootCol" class="col-sm-3 col-form-label" />
+                        <div class="col-sm-9">
+                            <h:message for="volumeBootCol"  style="color:red"/>
+                            <h:inputText class="form-control" id="volumeBootCol" a:placeholder="Volume Boot" converter="javax.faces.Float" value="#{budgetCarsController.familyCar.volumeBoot}" required="true" requiredMessage="Please enter car volume boot" converterMessage="Please enter a number on volume boot" validatorMessage="Please enter car volume boot greater than zero">
+                                <f:validateDoubleRange minimum="0.00" />
+                            </h:inputText>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <h:outputLabel value="Back Airbags?" for="bagAirbagsCol" class="col-sm-3 col-form-label" />
+                        <div class="col-sm-9">
+                            <h:message for="bagAirbagsCol"  style="color:red"/>
+                            <h:selectOneRadio id="bagAirbagsCol" value = "#{budgetCarsController.familyCar.hasBackAirbags}" converter="javax.faces.Boolean" required="true" requiredMessage="Please enter if car has back airbags">
+                                <f:selectItem itemValue = "true" itemLabel = "&nbsp;Yes &nbsp;" />
+                                <f:selectItem itemValue = "false" itemLabel = "&nbsp;No" />
+                            </h:selectOneRadio>  
+                        </div>
+                    </div>
+                    <br />
+                    <h:commandButton class="btn btn-success" value="Create" action="#{budgetCarsController.doCreateFamilyCar}"/> &nbsp;
+                    <h:commandButton class="btn btn-secondary" type="reset" value="Clear"/> &nbsp;
+                    <h:commandButton class="btn btn-danger" value="Cancel" immediate="true" action="familyCars" />
+                </h:form>
+                <br/>
+                <br />
+            </div>
+        </div>
+    </h:body>
+</html>
+

@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- 
+@Assessment3: WebProject The Budget Cars
+@author Jose Luis & Sarita Giri
+@StudentNumbers: 12045670 & 12045743
+@Description:   CarsByCustomer JSF page that prove a list with all the car purchased by a customer
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Budget Cars - Cars of Customer</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="./resources/css/custom.css" />
+    </h:head>
+    <h:body>
+        <div class="container">
+            <!-- Navbar on the top of the page -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="index.xhtml">Budget Cars</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <h:link class="nav-link" outcome="index" value="Home "><span class="sr-only">(current)</span></h:link>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="customers" value="Customer"/>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Cars
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <h:link class="dropdown-item" outcome="cars" value="All Cars" />
+                                <div class="dropdown-divider"></div>
+                                <h:link class="dropdown-item" outcome="familyCars" value="Family Cars" />
+                                <h:link class="dropdown-item" outcome="sportsCars" value="Sports Cars" />
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <h:link class="nav-link" outcome="sales" value="Sales"/>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <br />
+            <br />
+            <div class="body">
+                <h1>Purchased Cars By Customer ID = #{budgetCarsController.customerSearch.id}</h1>
+                <br />
+                <p>#{budgetCarsController.customerSearch.firstName} #{budgetCarsController.customerSearch.lastName} has purchased <b>#{budgetCarsController.carListByCustomer.size()}</b> cars</p>
+                <br />
+                <div class="table-responsive-xl">
+                    <h:dataTable value="#{budgetCarsController.carListByCustomer}" var="car" class="table table-striped">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#" />
+                            </f:facet>
+                            <h:outputText value="#{car.id}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Maker" />
+                            </f:facet>
+                            <h:outputText value="#{car.make}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Model"/>
+                            </f:facet>
+                            <h:outputText value="#{car.model}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Year of Manufacture" />
+                            </f:facet>
+                            <h:outputText value="#{car.yearOfManufacture}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Colour" />
+                            </f:facet>
+                            <h:outputText value="#{car.colour}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Transmission" />
+                            </f:facet>
+                            <h:outputText value="#{car.transmission}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Number of Seats" />
+                            </f:facet>
+                            <h:outputText value="#{car.numberOfSeats}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Registration Number" />
+                            </f:facet>
+                            <h:outputText value="#{car.registrationNumber}" />
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Price" />
+                            </f:facet>
+                            <h:outputText value="#{car.price}">
+                                <f:convertNumber currencySymbol="$" type="currency"/>
+                            </h:outputText>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+                <br />
+            </div>
+        </div>
+    </h:body>
+</html>
+
